@@ -1,0 +1,15 @@
+name: Update Leaderboard
+on:
+  workflow_run:
+    workflows: ["Autograding Tests"]
+    types: [completed]
+
+jobs:
+  update-leaderboard:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Update Leaderboard
+        uses: mscoutermarsh/classroom-leaderboard@v1
+        with:
+          github-token: ${{ secrets.LEADERBOARD_TOKEN }}
+          leaderboard-file: LEADERBOARD.md
